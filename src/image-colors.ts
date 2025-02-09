@@ -57,7 +57,9 @@ const loadImg = async (img: Input) => {
 
 const getColor = async (img: Input, quality?: number) => {
   const palette = await getPalette(img, 5, quality);
-  return palette?.at(0);
+  const color = palette.at(0);
+  if (!color) throw new Error('Unable to get image color!');
+  return color;
 };
 
 const getPalette = async (img: Input, colorCount = 10, quality = 10) => {
@@ -70,9 +72,8 @@ const getPalette = async (img: Input, colorCount = 10, quality = 10) => {
   const pixelArray = createPixelArray(data, pixelCount, quality);
 
   const cmap = quantize(pixelArray, colorCount);
-  const palette = cmap ? cmap.palette() : undefined;
-
-  return palette;
+  if (!cmap) throw new Error('Unable to get color palette');
+  return cmap.palette();
 };
 
 export { getColor, getPalette };
