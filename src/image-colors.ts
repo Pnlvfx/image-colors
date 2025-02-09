@@ -55,7 +55,7 @@ const loadImg = async (img: Input) => {
   }
 };
 
-const getColor = async (img: Input, quality?: number) => {
+const getDominantColor = async (img: Input, quality?: number) => {
   const palette = await getPalette(img, 5, quality);
   const color = palette.at(0);
   if (!color) throw new Error('Unable to get image color!');
@@ -77,4 +77,4 @@ const getPalette = async (img: Input, colorCount = 10, quality = 10) => {
   return cmap.palette() as RgbPixel[];
 };
 
-export { getColor, getPalette };
+export { getDominantColor, getPalette };
