@@ -1,10 +1,12 @@
 import type core from 'file-type/core.js';
 import type ndarray from 'ndarray';
 import getPixels from 'get-pixels';
-import quantize, { RgbPixel } from '@lokesh.dhakar/quantize';
+import quantize from '@lokesh.dhakar/quantize';
 import FileType from 'file-type';
 
 type Input = string | Buffer;
+
+export type RgbPixel = [number, number, number];
 
 const createPixelArray = (pixels: Uint8Array, pixelCount: number, quality: number) => {
   const pixelArray: RgbPixel[] = [];
