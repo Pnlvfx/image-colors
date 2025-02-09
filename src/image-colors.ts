@@ -73,7 +73,7 @@ const getPalette = async (img: Input, colorCount = 10, quality = 10) => {
 
   const cmap = quantize(pixelArray, colorCount);
   if (!cmap) throw new Error('Unable to get color palette');
-  // force this to use tis RgbPixel instead of quantize.RgbPixel which is unavailable outside the repo
+  // force this to use this RgbPixel instead of quantize.RgbPixel which is unavailable outside the repo
   return cmap.palette() as RgbPixel[];
 };
 
