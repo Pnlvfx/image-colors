@@ -53,7 +53,7 @@ const loadImg = async (img: Input) => {
   }
 };
 
-const getColor = async (img: Input, quality: number) => {
+const getColor = async (img: Input, quality?: number) => {
   const palette = await getPalette(img, 5, quality);
   return palette?.at(0);
 };
@@ -67,7 +67,7 @@ const getPalette = async (img: Input, colorCount = 10, quality = 10) => {
   const pixelCount = shape0 * shape1;
   const pixelArray = createPixelArray(data, pixelCount, quality);
 
-  const cmap = quantize.default(pixelArray, colorCount);
+  const cmap = quantize(pixelArray, colorCount);
   const palette = cmap ? cmap.palette() : undefined;
 
   return palette;
